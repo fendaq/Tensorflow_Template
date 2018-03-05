@@ -12,6 +12,8 @@ class ExampleModel(ModelBase):
         self.y = tf.placeholder(tf.float32, shape=[None, 10])
 
         self.logits, self.loss, self.train_op = self.build_graph()
+        # summaries
+        self.summaries = tf.summary.merge_all()
 
     @staticmethod
     def default_params():
