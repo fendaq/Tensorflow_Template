@@ -23,6 +23,8 @@ class ExampleTrainer(TrainerBase):
             _, loss, global_step = self.model.train(self.sess, batch_data)
             train_losses.append(loss)
             if global_step % 10 == 0:
+                # write summary
+                self.summary_file_writer.add_summary(summaries, global_step)
                 utils.print_out("  global step %d,  loss %.4f" % (global_step, np.mean(train_losses)), self.log_f)
                 train_losses = []
         checkpoint_path = os.path.join(self.params['output_dir'], self.params['checkpoint_name'])
